@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>College Bus Tracking System - Login</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      height: 100vh; 
+      margin: 0; 
+      background: linear-gradient(45deg, #6fb1fc, #4364f7, #283c86);
+      animation: gradientBackground 15s ease infinite;
+    }
+    @keyframes gradientBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .login-container {
+      text-align: center; 
+      background: white; 
+      padding: 20px; 
+      border-radius: 10px; 
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .login-container h2 {
+      margin-bottom: 20px;
+      color: #283c86;
+    }
+    .login-container input {
+      padding: 10px; 
+      margin: 10px 0; 
+      width: 100%; 
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .login-container button {
+      padding: 10px 20px; 
+      margin: 10px 0; 
+      background: #283c86; 
+      border: none; 
+      color: white; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      transition: background 0.3s;
+    }
+    .login-container button:hover {
+      background: #435ac7;
+    }
+    .error { 
+      color: red; 
+      font-weight: bold; 
+      display: none;
+    }
+    .nav-link {
+      margin-top: 10px; 
+      display: none; 
+      background: #28a745; 
+      color: white; 
+      border: none; 
+      padding: 10px 20px; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      transition: background 0.3s;
+    }
+    .nav-link:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Welcome Back! Please Login to Track Your Bus</h2>
+    <input type="text" id="username" placeholder="Username" /><br />
+    <input type="password" id="password" placeholder="Password" /><br />
+    <button onclick="login()">Login</button>
+    <p id="error" class="error">Invalid credentials. Please try again.</p>
+    <button id="trackingLink" class="nav-link" onclick="navigateToTracking()">Go to Tracking Page</button>
+  </div>
+
+  <script>
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      // Simple hardcoded credentials for demonstration
+      const validUsername = "user";
+      const validPassword = "password";
+
+      if (username === validUsername && password === validPassword) {
+        // Hide error and show tracking link
+        document.getElementById("error").style.display = "none";
+        document.getElementById("trackingLink").style.display = "block";
+      } else {
+        // Show error message
+        document.getElementById("error").style.display = "block";
+      }
+    }
+
+    function navigateToTracking() {
+      window.location.href = "C:/Users/91903/Downloads/GPS.HTML";
+    }
+  </script>
+</body>
+</html>
