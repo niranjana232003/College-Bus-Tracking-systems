@@ -1,0 +1,40 @@
+#include <TinyGPS++.h>
+
+// Create GPS object
+TinyGPSPlus gps;
+HardwareSerial GPSModule(1);
+
+// Pin definitions
+const int gpsTxPin = 17;          // GPS TX Pin (connect to ESP32 RX)
+const int gpsRxPin = 16;          // GPS RX Pin (connect to ESP32 TX)
+
+// Buzzer Pin
+const int buzzerPin = 25;
+
+void setup() {
+  // Initialize serial communication
+  Serial.begin(115200);
+  GPSModule.begin(9600, SERIAL_8N1, gpsTxPin, gpsRxPin);
+
+  // Initialize the buzzer
+  pinMode(buzzerPin, OUTPUT);
+  digitalWrite(buzzerPin, LOW);
+
+  Serial.println("GPS System Initialized.");
+}
+
+void loop() {
+  // Read data from GPS module
+  while (GPSModule.available() > 0) {
+    gps.encode(GPSModule.read());
+  }
+
+  if (gps.location.isUpdated()) {
+    Serial.print("Latitude: ");
+    Serial.println(gps.location.lat(), 6);
+    Serial.print("Longitude: ");
+    Serial.println(gps.location.lng(), 6);
+  }
+
+  delay(100); // Delay for stable readings
+}
